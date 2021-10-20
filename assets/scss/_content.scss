@@ -146,6 +146,20 @@
           color: $link-color;
         }
       }
+
+      .type {
+        display: inline-block;
+        flex: 0.5;
+        width: 10rem;
+        text-align: center;
+
+        font-weight: normal;
+
+        @media only screen and (max-width: 768px) {
+          width: default;
+          text-align: left;
+        }
+      }
     }
   }
 
@@ -237,4 +251,8 @@
       }
     }
   }
+}
+
+.content {
+  flex-direction: column;
 }

@@ -33,3 +33,16 @@
     {{ end }}
   </div>
 </section>
+
+<section class="container list">
+  {{ .Content }}
+  <ul>
+    {{ range .Site.RegularPages }}
+    <li>
+      <span class="date">{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}</span>
+      <a class="title" href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
+      <span class="type">[{{ .Type | singularize }}]</span>
+    </li>
+    {{ end }}
+  </ul>
+</section>
