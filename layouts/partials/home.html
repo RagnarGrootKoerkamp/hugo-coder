@@ -37,11 +37,11 @@
 <section class="container list">
   {{ .Content }}
   <ul>
-    {{ range .Site.RegularPages }}
+    {{ range (where .Site.RegularPages ".Type" "posts") }}
     <li>
       <span class="date">{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}</span>
       <a class="title" href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
-      <span class="type">[{{ .Type | singularize }}]</span>
+      <span class="type">{{ apply .Page.Params.Categories "singularize" "." }}</span>
     </li>
     {{ end }}
   </ul>
