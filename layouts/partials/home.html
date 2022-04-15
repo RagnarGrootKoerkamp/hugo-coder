@@ -36,13 +36,15 @@
 
 <section class="container list">
   {{ .Content }}
-  <ul>
-    {{ range (where .Site.RegularPages ".Type" "posts") }}
+  {{ range $type := (slice "pages" "posts" "notes") }}
+  <h2>{{ $type | humanize }}</h2>
+  <ul >
+    {{ range (where site.RegularPages ".Type" $type) }}
     <li>
-      <span class="date">{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}</span>
+      <span class="date"></span>
       <a class="title" href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
-      <span class="type">{{ apply .Page.Params.Categories "singularize" "." }}</span>
     </li>
     {{ end }}
   </ul>
+  {{ end }}
 </section>
