@@ -41,7 +41,11 @@
   <ul >
     {{ range (where site.RegularPages ".Type" $type) }}
     <li>
-      <span class="date"></span>
+      <span class="date">
+      {{ if eq $type "posts" }}
+        {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}
+      {{ end }}
+      </span>
       <a class="title" href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
     </li>
     {{ end }}
