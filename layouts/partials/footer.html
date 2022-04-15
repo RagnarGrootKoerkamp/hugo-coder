@@ -1,6 +1,7 @@
 {{ if not .Site.Params.hideFooter | default false }}
   <footer class="footer">
     <section class="container">
+      {{ partial "footer_links.html" . }}
       {{ with .Site.Params.footerContent | safeHTML }}
         <p>{{ . }}</p>
       {{ end }}
