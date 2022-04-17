@@ -42,7 +42,7 @@
     {{ range (where site.RegularPages ".Type" $type) }}
     <li>
       <span class="date">
-      {{ if eq $type "posts" }}
+      {{ if ne $type "pages" }}
         {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}
       {{ end }}
       </span>
