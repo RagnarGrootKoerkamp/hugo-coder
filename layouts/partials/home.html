@@ -43,7 +43,7 @@
     <li>
       <span class="date">
       {{ if ne $type "pages" }}
-        {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}
+        {{ .Date.Format (.Site.Params.dateFormat | default "January 2006" ) }}
       {{ end }}
       </span>
       <a class="title" href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
