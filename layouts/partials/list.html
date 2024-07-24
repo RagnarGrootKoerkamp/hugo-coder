@@ -15,6 +15,7 @@
     <li>
       <span class="date">{{ .Date.Format (.Site.Params.dateFormat | default "January 2006" ) }}</span>
       <a class="title" href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
+      {{ with .Params.Tags }}{{ partial "taxonomy/tags.html" . }}{{ end }}
     </li>
     {{ end }}
   </ul>
