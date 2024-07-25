@@ -17,7 +17,7 @@
       {{ $count := .Count }}
       {{ with $.Site.GetPage (printf "/%s/%s" $type $name) }}
         <li>
-          <span class="taxonomy-element">
+          <span class="taxonomy-element {{.Type | singularize}}" data-tag="{{.Name | urlize}}">
             <span class="taxonomy-count">{{ $count }}</span>
             <a href="{{ .Permalink }}">{{ .Name }}</a>
           </span>
