@@ -100,7 +100,8 @@
   }
 }
 
-.notice.error {
+.notice.error,
+.notice.bug {
   background-color: $bg-color-notice-error-content;
 
   .notice-title {
