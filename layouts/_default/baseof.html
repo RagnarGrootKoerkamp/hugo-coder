@@ -77,6 +77,13 @@
       {{ end }}
     {{ end }}
 
+    {{ range .Site.Params.fixedSCSS}}
+      {{/* Un-fingerprinted minified styles. Generated but not included by default. */}}
+      {{ $cssOpts := (dict "transpiler" "dartsass") }}
+      {{ $styles := resources.Get . | toCSS $cssOpts | minify }}
+      <!--{{ $styles.RelPermalink }}-->
+    {{ end }}
+
     <link rel="icon" type="image/png" href="{{ .Site.Params.favicon_32 | default "/images/favicon-32x32.png" | relURL }}" sizes="32x32">
     <link rel="icon" type="image/png" href="{{ .Site.Params.favicon_16 | default "/images/favicon-16x16.png" | relURL }}" sizes="16x16">
 
