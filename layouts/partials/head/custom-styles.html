@@ -1,0 +1,29 @@
+ {{ range .Site.Params.customCSS }}
+  {{ if hugo.IsServer }}
+    {{ $styles := resources.Get . }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" media="screen">
+  {{ else }}
+    {{ $styles := resources.Get . | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous" media="screen" />
+  {{ end }}
+{{ end }}
+
+{{ range .Site.Params.customSCSS }}
+  {{/* We don't change the targetPath to because it's transparent to users */}}
+  {{ if hugo.IsServer }}
+    {{ $cssOpts := (dict "enableSourceMap" true "transpiler" "dartsass") }}
+    {{ $styles := resources.Get . | toCSS $cssOpts }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" media="screen">
+  {{ else }}
+    {{ $cssOpts := (dict "transpiler" "dartsass") }}
+    {{ $styles := resources.Get . | toCSS $cssOpts | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous" media="screen" />
+  {{ end }}
+{{ end }}
+
+
+{{ range .Site.Params.fixedSCSS}}
+  {{/* Un-fingerprinted minified styles. Generated but not included by default. */}}
+  {{ $cssOpts := (dict "transpiler" "dartsass") }}
+  {{ $styles := resources.Get . | toCSS $cssOpts | minify }}
+{{ end }}
