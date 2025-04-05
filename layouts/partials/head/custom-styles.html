@@ -26,4 +26,5 @@
   {{/* Un-fingerprinted minified styles. Generated but not included by default. */}}
   {{ $cssOpts := (dict "transpiler" "dartsass") }}
   {{ $styles := resources.Get . | toCSS $cssOpts | minify }}
+  {{ $x := $styles.RelPermalink }}
 {{ end }}
