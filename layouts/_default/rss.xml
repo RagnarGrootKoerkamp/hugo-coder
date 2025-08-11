@@ -45,7 +45,7 @@
     {{- with .OutputFormats.Get "RSS" }}
     {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{- end }}
-    {{- range $pages }}
+    {{- range $pages }}{{ if not (in .Params.Tags "wip") }}
     <item>
       <title>{{ .Title }}</title>
       <link>{{ .Permalink }}</link>
@@ -54,6 +54,6 @@
       <guid>{{ .Permalink }}</guid>
       <description>{{ .Summary | transform.XMLEscape | safeHTML }}</description>
     </item>
-    {{- end }}
+    {{- end }}{{ end }}
   </channel>
 </rss>
