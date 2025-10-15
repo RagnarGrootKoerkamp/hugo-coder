@@ -55,6 +55,11 @@
   {{ end }}
   {{ end }}
 
+  {{ range .Site.Params.fixedJS }}
+  {{ $script := resources.Get . }}
+  {{ $_tmp := $script.RelPermalink }}
+  {{ end }}
+
   {{ range .Site.Params.customRemoteJS }}
   {{ if hugo.IsServer }}
   {{ $script := resources.GetRemote . }}
